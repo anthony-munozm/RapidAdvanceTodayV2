@@ -3,14 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, TEXT, Date
 from flask_migrate import Migrate
 from config import connection_string
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = connection_string
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
-
-migrate = Migrate(app, db)
-
+from api import db
 
 class ShortForm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
