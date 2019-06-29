@@ -10,7 +10,7 @@ class ShortForm(db.Model):
     price = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String(120), nullable=False)
     last_4_of_ssn = db.Column(db.Integer, nullable=False)
-    birthday = db.Column(db.Date)
+    birthday = db.Column(db.String(20), nullable=False)
     zip = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
@@ -28,7 +28,7 @@ class LongFormStep1(db.Model):
     phone = db.Column(Integer, nullable=False)
     mobil_phone = db.Column(Integer, nullable=False)
     email = db.Column(String(120), nullable=False)
-    birthday = db.Column(Date)
+    birthday = db.Column(db.String(20), nullable=False)
     social_security = db.Column(Integer, nullable=False)
     driver_license = db.Column(Integer, nullable=False)
     issuing_state = db.Column(String(80), nullable=False)
@@ -49,8 +49,8 @@ class LongFormStep2(db.Model):
     time_of_job = db.Column(String(10), nullable=False)
     total_monthly_income = db.Column(String(80), nullable=False)
     payment_frequency = db.Column(String(20), nullable=False)
-    first_payment = db.Column(Date)
-    second_payment = db.Column(Date)
+    first_payment = db.Column(db.String(20), nullable=False)
+    second_payment = db.Column(db.String(20), nullable=False)
     deposit = db.Column(String(10), nullable=False)
 
     def __repr__(self):
