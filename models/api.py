@@ -19,28 +19,6 @@ migrate = Migrate(app, db)
 @app.route('/index', methods=['POST', 'GET'])
 def short_form_post():
 
-    """from models import ShortForm
-
-    if request.method == 'POST': 
-
-        payload = request
-
-        print(payload)
-
-        print("entró en el if del POST") 
-
-        short_form = ShortForm(email="test@gmail.com", price=1000, last_4_of_ssn=100, birthday=datetime.now(), zip=10141)
-
-        db.session.merge(short_form)
-
-        db.session.commit()
-
-        return True
-
-    if request.method == 'GET': 
-
-        return "You are using GET invalid method... tony recommends please go back and work using postman and POST"""
-
     if request.method == "POST":
         resp = json.dumps(request.form.to_dict(), ensure_ascii=False)
         variable = json.loads(resp)

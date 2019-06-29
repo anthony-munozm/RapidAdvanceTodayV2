@@ -2,7 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.pyc
+.pyc
+.vscode/
+__pycache__/
+models/__pycache__/models.cpython-36.pyc
 # C extensions
 *.so
 
