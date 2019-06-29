@@ -18,24 +18,27 @@ migrate = Migrate(app, db)
 
 @app.route('/index', methods=['POST', 'GET'])
 def short_form_post():
-
+    response = dict()
     if request.method == "POST":
-        resp = json.dumps(request.form.to_dict(), ensure_ascii=False)
-        variable = json.loads(resp)
-        if type(variable["price"]) != Integer:
+        resp =  request.get_json()
+        variable = resp
+        print(variable)
+        if type(variable["price"]) != int:
             return "invalid name" 
-        elif re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}$',variable["email"].lower() != True):
+        elif type(variable["email"]) != str:
             return "invalid email please try again"
-        elif type(variable["SSN"]) != Integer:
+        elif type(variable["SSN"]) != int:
              return "invalid SSN"
-        elif type(variable["birthday"]) != String:
+        elif type(variable["birthday"]) != str:
             return "invalid birthday, please enter the correct date"
-        elif type(variable["zip"]) != Integer:
+        elif type(variable["zip"]) != str:
             return "invalid Zip, please enter the correct numbering"
         else:
             db.session.merge(resp)
             db.session.commit()
-    return True
+    response["result"] = True
+
+    return str(response)
 
 
 @app.route('/LongFormStep1', methods=['POST', 'GET'])
@@ -104,4 +107,4 @@ def long_form_step3_post():
         
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
