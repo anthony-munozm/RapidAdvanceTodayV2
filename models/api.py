@@ -108,15 +108,18 @@ def short_form_post():
 
 @app.route('/LongFormStep1', methods=['POST', 'GET'])
 def long_form_step1_post():
+    response = dict()
     if request.method == "POST":
         resp =  request.get_json()
-        variable = json.loads(resp)
+        variable = resp
         if type(variable["first_name"]) != str:
             return "invalid first_name"
         elif type(variable["last_name"]) != str:
             return "invalid last_name"
         elif type(variable["street_adress"]) != str:
             return "invalid street_adress"
+        elif type(variable["code_city"]) != str:
+            return "invalid code_city"
         elif type(variable["city"]) != str:
             return "invalid city"
         elif type(variable["zip"]) != int:
@@ -143,14 +146,17 @@ def long_form_step1_post():
             short_form_step1 = LongFormStep1(**resp)
             db.session.merge(short_form_step1)
             db.session.commit()
-    return True
+    response["result"] = True
+
+    return str(response)
 
 
 @app.route('/LongFormStep2', methods=['POST', 'GET'])
 def long_form_step2_post():
+    response = dict()
     if request.method == "POST":
         resp =  request.get_json()
-        variable = json.loads(resp)
+        variable = resp
         if type(variable["military"]) != str:
             return "invalid military"
         elif type(variable["income"]) != str:
@@ -177,14 +183,17 @@ def long_form_step2_post():
             short_form_step2 = LongFormStep2(**resp)
             db.session.merge(short_form_step2)
             db.session.commit()
-    return True
+    response["result"] = True
+
+    return str(response)
 
 
 @app.route('/LongFormStep3', methods=['POST', 'GET'])
 def long_form_step3_post():
+    response = dict()
     if request.method == "POST":
         resp =  request.get_json()
-        variable = json.loads(resp)
+        variable = resp
         if type(variable["aba"]) != int:
             return "invalid ABA/Routing#"
         elif type(variable["bank_name"]) != str:
@@ -199,7 +208,9 @@ def long_form_step3_post():
             short_form_step3 = LongFormStep3(**resp)
             db.session.merge(short_form_step3)
             db.session.commit()
-    return True
+    response["result"] = True
+            
+    return str(response)
         
 
 if __name__ == '__main__':
